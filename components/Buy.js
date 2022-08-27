@@ -1,9 +1,10 @@
-import React, {useState, useMemo, useEffect} from "react";
-import { Keypair, Transaction } from "@solana/web3.js";
-import { findReference, FindReferenceError } from "@solana/pay";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { InfinitySpin } from "react-loader-spinner";
-import IPFSDownload from "./IpfsDownload";
+import React, { useState, useEffect, useMemo } from 'react';
+import { Keypair, Transaction } from '@solana/web3.js';
+import { findReference, FindReferenceError } from '@solana/pay';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { InfinitySpin } from 'react-loader-spinner';
+import IPFSDownload from './IpfsDownload';
+import { addOrder } from '../lib/api';
 
 const STATUS = {
     Initial: "Initial",
@@ -16,8 +17,8 @@ export default function Buy({ itemID }) {
     const { publicKey, sendTransaction } = useWallet();
     const orderID = useMemo(() => Keypair.generate().publicKey, []); // Public key used to identify the order
 
-    const [status, setStatus] = useState(STATUS.Initial);
     const [loading, setLoading] = useState(false); // Loading state of all above
+    const [status, setStatus] = useState(STATUS.Initial);
 
     // useMemo is a React hook that only computes the value if the dependencies change
     const order = useMemo(
@@ -70,7 +71,8 @@ export default function Buy({ itemID }) {
                         clearInterval(interval);
                         setStatus(STATUS.Paid);
                         setLoading(false);
-                        alert("Thank you for your purchase!");
+                        await addOrder(order);
+                        alert('Thank you for your purchase!');
                     }
                 } catch (e) {
                     if (e instanceof FindReferenceError) {
