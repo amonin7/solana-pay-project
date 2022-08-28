@@ -7,5 +7,14 @@
     "image_url": "https://media.giphy.com/media/T8Dhl1KPyzRqU/giphy.gif",
     "filename": "giphy.gif",
     "hash": "Qmcwxi73kCRT9Gf2PLpmKGfb4NDgsTpKCiXraBi3NLKFWu"
+  },
+  {
+    "id": 2,
+    "name": "Another Comp Gif",
+    "price": "15.7",
+    "description": "Get this comp gif for only $15.7!",
+    "image_url": "https://media.giphy.com/media/h3u7w8BR07IHDsnzQw/giphy.gif",
+    "filename": "giphy1.gif",
+    "hash": "QmRuKhT1fxutNU95mRpyezmJsgx8fJsqYnha8Xv48Yas8C"
   }
 ]
